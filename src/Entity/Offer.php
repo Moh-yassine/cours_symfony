@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 class Offer
@@ -14,21 +15,27 @@ class Offer
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
+  #[Groups("offer:read")]
   private ?int $id = null;
 
   #[ORM\Column(length: 255)]
+  #[Groups("offer:read")]
   private ?string $title = null;
 
   #[ORM\Column(length: 255, nullable: true)]
+  #[Groups("offer:read")]
   private ?string $description = null;
 
   #[ORM\Column(length: 255)]
+  #[Groups("offer:read")]
   private ?string $city = null;
 
   #[ORM\Column(length: 255)]
+  #[Groups("offer:read")]
   private ?string $tag = null;
 
   #[ORM\ManyToOne(inversedBy: 'offers')]
+  #[Groups("offer:read")]
   private ?User $recruiter = null;
 
   /**
