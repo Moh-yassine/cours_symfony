@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'offre{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .edit-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .edit-title {
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f39c12;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            border-color: #f39c12;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(243, 156, 18, 0.25);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: #f39c12;
+            color: white;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e67e22;
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 0.3rem;
+            font-size: 0.85rem;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="edit-container">
+        <h1 class="edit-title">Modifier l'offre</h1>
+        
+        {{ form_start(form) }}
+
+            <div class="form-group">
+                {{ form_label(form.title, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.title, {'attr': {'class': 'error-message'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.description, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.description, {'attr': {'class': 'error-message'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.city, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.city, {'attr': {'class': 'error-message'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.tag, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.tag, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.tag, {'attr': {'class': 'error-message'}}) }}
+            </div>
+
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

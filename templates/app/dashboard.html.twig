@@ -1,0 +1,65 @@
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div style="text-align: center; color: #9370DB; font-family: 'Poppins', sans-serif;">
+        <h1 style="font-family: 'Poppins', sans-serif; font-weight: bold;">Dashboard</h1>
+
+        <div style="margin-bottom: 20px;">
+          <button onclick="showOffers()" style="display: inline-block; text-decoration: none; color: white; background-color: #9370DB; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: background-color 0.3s ease; border: none; cursor: pointer;">Offres</button>
+          <button onclick="showCandidates()" style="display: inline-block; text-decoration: none; color: white; background-color: #9370DB; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: background-color 0.3s ease; border: none; cursor: pointer;">Candidatures</button>
+        </div>
+
+        <div id="offers" style="display: block;">
+            <div style="margin-bottom: 20px;">
+                <a href="{{ path('add_offer') }}" style="display: inline-block; text-decoration: none; color: white; background-color: #9370DB; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: background-color 0.3s ease;">Ajouter une offre</a>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                {% for offer in offers %}
+                    <div style="border: 1px solid #ddd; border-radius: 8px; margin: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                        <h2 style="margin: 0;">{{ offer.title }}</h2>
+                        <p><strong>ID:</strong> {{ offer.id }}</p>
+                        <p><strong>Description:</strong> {{ offer.description }}</p>
+                        <p><strong>Ville:</strong> {{ offer.city }}</p>
+                        <p><strong>Tags:</strong> {{ offer.tag }}</p>
+                        <div style="margin-top: 10px;">
+                            <a href="{{ path('edit_offer', {'id': offer.id}) }}" style="text-decoration: none; color: #9370DB; background-color: #e6f7ff; padding: 8px 16px; border-radius: 5px; margin-right: 5px; transition: background-color 0.3s ease;">Modifier</a>
+                            <a href="{{ path('delete_offer', {'id': offer.id}) }}" style="text-decoration: none; color: #FF0000; background-color: #ffe6e6; padding: 8px 16px; border-radius: 5px; transition: background-color 0.3s ease;">Supprimer</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+        <div id="candidates" style="display: none;">
+          <div style="margin-bottom: 20px;">
+              <a href="{{ path('add_candidacy', {'id': 6}) }}" style="display: inline-block; text-decoration: none; color: white; background-color: #9370DB; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: background-color 0.3s ease;">Ajouter une candidature</a>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+              {% for candidacy in candidacies %}
+                  <div style="border: 1px solid #ddd; border-radius: 8px; margin: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                      <h2 style="margin: 0;">{{ candidacy.message }}</h2>
+                      <p><strong>ID:</strong> {{ candidacy.id }}</p>
+                      <div style="margin-top: 10px;">
+                          <a href="{{ path('delete_candidacy', {'id': candidacy.id}) }}" style="text-decoration: none; color: #FF0000; background-color: #ffe6e6; padding: 8px 16px; border-radius: 5px; transition: background-color 0.3s ease;">Supprimer</a>
+                      </div>
+                  </div>
+              {% endfor %}
+          </div>
+        </div>
+
+        <script>
+            function showOffers() {
+                document.getElementById('offers').style.display = 'block';
+                document.getElementById('candidates').style.display = 'none';
+            }
+
+            function showCandidates() {
+                document.getElementById('offers').style.display = 'none';
+                document.getElementById('candidates').style.display = 'block';
+            }
+        </script>
+
+{% endblock %}
